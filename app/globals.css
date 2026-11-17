@@ -2,26 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  color: #f6f1e7;
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+::selection {
+  background: #ffc400;
+  color: #000;
+}
+
+@layer components {
+  /* cream card with hard offset shadow */
+  .brut {
+    background: #f6f1e7;
+    color: #0a0a0a;
+    border: 3px solid #000;
+    border-radius: 22px;
+    box-shadow: 8px 8px 0 var(--sh, #ffc400);
   }
+  .brut-sm {
+    box-shadow: 4px 4px 0 var(--sh, #ffc400);
+    border-radius: 14px;
+  }
+  .win-bar {
+    @apply flex items-center gap-2 px-4 py-3 border-b-[3px] border-black;
+  }
+  .dot {
+    @apply h-3.5 w-3.5 rounded-full border-2 border-black;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border-[3px] border-black bg-gold px-6 py-3 font-extrabold text-black transition-all;
+    box-shadow: 5px 5px 0 #f6f1e7;
+  }
+  .btn:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #f6f1e7;
+  }
+  .btn-orange {
+    @apply bg-orange;
+  }
+  .btn-white {
+    @apply bg-cream;
+    box-shadow: 5px 5px 0 #ffc400;
+  }
+  .btn-white:hover {
+    box-shadow: 2px 2px 0 #ffc400;
+  }
+  .chip {
+    @apply rounded-full border-2 border-black bg-white px-3 py-1 text-xs font-bold text-black;
+  }
+  .num {
+    @apply flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-[3px] border-black bg-gold text-2xl font-black text-black;
+    box-shadow: 5px 5px 0 #f6f1e7;
+  }
+  .label {
+    @apply font-mono text-xs font-bold uppercase tracking-[0.25em] text-gold;
+  }
+  .hl {
+    @apply inline-block -rotate-2 rounded-xl border-[3px] border-black bg-gold px-3 text-black;
+    box-shadow: 6px 6px 0 #f6f1e7;
+  }
+}
+
+.packet {
+  position: absolute;
+  top: 0;
+  left: -12px;
+  width: 12px;
+  height: 100%;
+  background: #ff6a1f;
+  animation: flow 1.4s linear infinite;
+}
+
+@keyframes flow {
+  to {
+    transform: translateX(44px);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
 }
